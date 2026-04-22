@@ -52,9 +52,7 @@ connectDB().then(async () => {
 // Security middleware
 app.use(helmet());
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production'
-    ? 'https://civicx.app'
-    : ['http://localhost:5173', 'http://localhost:3000', 'http://localhost:5174'],
+  origin: true, // Allow all origins for production/demo stability
   credentials: true
 }));
 

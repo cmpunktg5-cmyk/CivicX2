@@ -106,4 +106,37 @@ On server start, the system automatically:
 
 ---
 
+## ⚛️ 7. Frontend Architecture & State
+
+### 📦 State Management (Zustand)
+The app uses a unified store (`client/src/store/index.js`) to manage:
+- **Auth Store**: Handles login/logout, user profile caching, and `civicx_token` persistence.
+- **Complaint Store**: Manages the global list of complaints, map marker filtering, and "currentComplaint" selection.
+- **UI Store**: Handles modal states, sidebar toggles, and theme switching logic.
+
+### 🧩 Core Component Hierarchy
+- **Layouts**: `AdminLayout` (Collapsible sidebar) and `CitizenLayout` (Bottom Nav).
+- **MapView**: Uses `react-leaflet`. Marker logic:
+  - Yellow: PENDING
+  - Blue: ASSIGNED/IN_PROGRESS
+  - Green: RESOLVED
+  - Red Strobe: CRITICAL (AI urgenccy > 8)
+- **IntelligencePanel**: Reusable component that parses `aiAnalysis` and renders a progress bar for `confidence` and a targeted `suggested_resolution`.
+
+---
+
+## 🛠️ 8. Integration & API Patterns
+
+### 📡 API Service (`api.js`)
+- **Base Config**: Uses `axios` with interceptors to automatically attach the `Authorization` header.
+- **Base URL**: Dynamically switches between `process.env.VITE_API_BASE_URL` (Production) and `/api` (Proxy for Development).
+- **Error Handling**: 401 Interceptor automatically wipes local storage and redirects to `/login`.
+
+### 🎙️ CivicSpeak (Voice Logic)
+Uses the browser's `Web Speech API`:
+- **Continuous Mode**: `recognition.continuous = true` ensures the mic doesn't turn off during pauses.
+- **Auto-stop**: Ends session only when user taps "Stop Intel Capture."
+
+---
+
 **CivicX AI Technical Stack** — *The logical heart of next-gen governance.*

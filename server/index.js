@@ -72,6 +72,19 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
 // Routes
+app.get('/', (req, res) => {
+  res.send(`
+    <div style="font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: #121212; color: white;">
+      <h1 style="color: #1ed760;">🏛️ CivicX AI API</h1>
+      <p style="color: #b3b3b3;">Intelligence-driven governance terminal is operational.</p>
+      <div style="margin-top: 20px; padding: 20px; background: #181818; border-radius: 12px; border: 1px solid #333;">
+        <code style="color: #539df5;">Status: Online</code><br/>
+        <code style="color: #539df5;">Version: 2.5.0-Flash</code>
+      </div>
+    </div>
+  `);
+});
+
 app.use('/api/auth', authRoutes);
 app.use('/api/complaints', complaintRoutes);
 app.use('/api/rewards', rewardRoutes);

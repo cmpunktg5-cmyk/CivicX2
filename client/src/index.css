@@ -1,0 +1,273 @@
+@import "tailwindcss";
+
+/* ============================================
+   CivicX AI Design System
+   Inspired by Spotify's dark immersive theme
+   ============================================ */
+
+:root {
+  /* Brand Colors */
+  --color-brand: #1ed760;
+  --color-brand-dark: #1db954;
+  --color-brand-glow: rgba(30, 215, 96, 0.15);
+
+  /* Background Surfaces (Light Mode) */
+  --color-bg-base: #f0f2f5;
+  --color-bg-surface: #ffffff;
+  --color-bg-elevated: #ffffff;
+  --color-bg-card: #f9fafb;
+  --color-bg-hover: #f3f4f6;
+
+  /* Text Colors (Light Mode) */
+  --color-text-primary: #111827;
+  --color-text-secondary: #4b5563;
+  --color-text-muted: #9ca3af;
+  --color-text-bright: #000000;
+  
+  /* Borders (Light Mode) */
+  --color-border: #e5e7eb;
+  --color-border-light: #d1d5db;
+  --color-border-brand: #1db954;
+
+  /* Shadows (Light Mode) */
+  --shadow-card: 0px 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-dialog: 0px 8px 24px rgba(0, 0, 0, 0.15);
+  --shadow-brand-glow: 0px 4px 20px rgba(30, 215, 96, 0.3);
+  --shadow-inset: rgb(255, 255, 255) 0px 1px 0px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+}
+
+.dark {
+  /* Background Surfaces (Dark Mode) */
+  --color-bg-base: #121212;
+  --color-bg-surface: #181818;
+  --color-bg-elevated: #1f1f1f;
+  --color-bg-card: #252525;
+  --color-bg-hover: #2a2a2a;
+
+  /* Text Colors (Dark Mode) */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #b3b3b3;
+  --color-text-muted: #7c7c7c;
+  --color-text-bright: #fdfdfd;
+
+  /* Borders (Dark Mode) */
+  --color-border: #4d4d4d;
+  --color-border-light: #7c7c7c;
+
+  /* Shadows (Dark Mode) */
+  --shadow-card: 0px 8px 8px rgba(0, 0, 0, 0.3);
+  --shadow-dialog: 0px 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-inset: rgb(18, 18, 18) 0px 1px 0px, rgb(124, 124, 124) 0px 0px 0px 1px inset;
+}
+
+@theme {
+
+  /* Semantic Colors */
+  --color-error: #f3727f;
+  --color-warning: #ffa42b;
+  --color-info: #539df5;
+  --color-success: #1ed760;
+
+  /* Status Colors */
+  --color-status-pending: #ffa42b;
+  --color-status-assigned: #539df5;
+  --color-status-progress: #a855f7;
+  --color-status-resolved: #1ed760;
+  --color-status-rejected: #f3727f;
+
+  /* Urgency Colors */
+  --color-urgency-low: #1ed760;
+  --color-urgency-medium: #ffa42b;
+  --color-urgency-high: #f3727f;
+  --color-urgency-critical: #ef4444;
+
+  /* Category Colors */
+  --color-cat-garbage: #f97316;
+  --color-cat-pothole: #8b5cf6;
+  --color-cat-streetlight: #eab308;
+  --color-cat-water: #3b82f6;
+  --color-cat-sewage: #6b7280;
+  --color-cat-noise: #ec4899;
+  --color-cat-traffic: #ef4444;
+  --color-cat-electrical: #f59e0b;
+  --color-cat-encroachment: #14b8a6;
+
+
+
+  /* Border Radius */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-pill: 500px;
+  --radius-full: 9999px;
+
+  /* Font */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--color-bg-base);
+  color: var(--color-text-primary);
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-light);
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+
+.glass-card {
+  background: var(--color-bg-surface);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+}
+
+.brand-glow {
+  box-shadow: var(--shadow-brand-glow);
+}
+
+.brand-gradient {
+  background: linear-gradient(135deg, #1ed760 0%, #1db954 100%);
+}
+
+.dark-gradient {
+  background: linear-gradient(180deg, rgba(18, 18, 18, 0) 0%, #121212 100%);
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.05) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(30, 215, 96, 0.4); }
+  50% { box-shadow: 0 0 20px 5px rgba(30, 215, 96, 0.2); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Leaflet map overrides */
+.leaflet-container {
+  background: var(--color-bg-base) !important;
+  border-radius: var(--radius-lg);
+}
+
+.leaflet-popup-content-wrapper {
+  background: var(--color-bg-surface) !important;
+  color: var(--color-text-primary) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-dialog) !important;
+}
+
+.leaflet-popup-tip {
+  background: var(--color-bg-surface) !important;
+}
+
+/* Safe area for bottom nav */
+.pb-safe {
+  padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+}
+
+/* Hide number input spinners */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ============================================
+   Admin Specific Styles
+   ============================================ */
+
+.admin-sidebar-item {
+  @apply flex items-center gap-3 px-4 py-3 rounded-xl text-[var(--color-text-secondary)] hover:bg-[var(--color-bg-hover)] hover:text-[var(--color-text-primary)] transition-all duration-200 cursor-pointer;
+}
+
+.admin-sidebar-item.active {
+  @apply bg-[var(--color-bg-elevated)] text-[var(--color-brand)] font-bold shadow-sm;
+}
+
+.admin-card {
+  @apply rounded-2xl bg-[var(--color-bg-surface)] p-6 border border-[var(--color-border)] shadow-sm;
+}
+
+.admin-stat-icon {
+  @apply w-12 h-12 rounded-xl flex items-center justify-center bg-opacity-10;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.animate-slide-in {
+  animation: slide-in-right 0.3s ease-out forwards;
+}

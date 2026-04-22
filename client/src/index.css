@@ -251,7 +251,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .admin-stat-icon {
-  @apply w-12 h-12 rounded-xl flex items-center justify-center bg-opacity-10;
+  @apply w-12 h-12 rounded-xl flex items-center justify-center;
 }
 
 .no-scrollbar::-webkit-scrollbar {

@@ -89,6 +89,11 @@ app.use('/api/auth', authRoutes);
 app.use('/api/complaints', complaintRoutes);
 app.use('/api/rewards', rewardRoutes);
 
+// API base status
+app.get('/api', (req, res) => {
+  res.json({ message: 'CivicX API Gateway is active', version: '2.5.0' });
+});
+
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
